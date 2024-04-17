@@ -31,6 +31,17 @@
 *.out
 *.app
 
+<<<<<<< .merge_file_6enqko
+=======
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+>>>>>>> .merge_file_q7NXKp
 .vs
 Debug
 x64
