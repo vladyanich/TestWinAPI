@@ -151,11 +151,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lib\List\List.c" />
+    <ClCompile Include="lib\List\GensRange.c" />
+    <ClCompile Include="lib\Thread\Thread.c" />
     <ClCompile Include="TestWinApi.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lib\List\List.h" />
+    <ClInclude Include="lib\List\GensRange.h" />
+    <ClInclude Include="lib\Thread\Thread.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
