@@ -1,0 +1,29 @@
+#include <windows.h>
+#include <stdlib.h>
+#include <stdlib.h> 
+#include <string.h> 
+#include <iostream> 
+#include <cmath> 
+#include <malloc.h> 
+#include <cstring> 
+#include <cstdlib> 
+
+
+DWORD WINAPI ThreadFunc(void* data) {
+	while (true)
+	{
+		printf("\nthread");
+		Sleep(1000);
+	}
+	return 0;
+}
+
+int main() {
+	HANDLE thread = CreateThread(NULL, 0, ThreadFunc, NULL, 0, NULL);
+	while (true)
+	{
+		printf("\nmain");
+		Sleep(500);
+	}
+	
+}
