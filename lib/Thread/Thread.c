@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Thread.h"
 
-//volatile int TIME = 3000;
+volatile int TIME = 3000;
 
 int get_sum()
 {

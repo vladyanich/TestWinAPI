@@ -16,30 +16,30 @@
     <Filter Include="lib">
       <UniqueIdentifier>{968b1106-7dcd-43e9-b3b0-ad27b9899099}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lib\GensRange">
-      <UniqueIdentifier>{8ae93c15-11ab-4d4f-bcd4-0a8d34a44b0b}</UniqueIdentifier>
+    <Filter Include="lib\Thread">
+      <UniqueIdentifier>{81d05688-6fc2-437a-b6e9-bcaf56bef51a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lib\AltThread">
-      <UniqueIdentifier>{2fb8586d-b3ab-4eb0-9cb7-7e1f281c8879}</UniqueIdentifier>
+    <Filter Include="lib\GensRange">
+      <UniqueIdentifier>{3db5ae23-bc27-4c0e-b9d1-fc08847a3a6d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TestWinApi.cpp">
+    <ClCompile Include="TestWinApi.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lib\List\GensRange.c">
-      <Filter>lib\GensRange</Filter>
-    </ClCompile>
     <ClCompile Include="lib\Thread\Thread.c">
-      <Filter>lib\AltThread</Filter>
+      <Filter>lib\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\GensRange\GensRange.c">
+      <Filter>lib\GensRange</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lib\List\GensRange.h">
-      <Filter>lib\GensRange</Filter>
-    </ClInclude>
     <ClInclude Include="lib\Thread\Thread.h">
-      <Filter>lib\AltThread</Filter>
+      <Filter>lib\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\GensRange\GensRange.h">
+      <Filter>lib\GensRange</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

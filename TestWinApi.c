@@ -3,7 +3,7 @@
 #include "stdio.h" 
 #include "string.h"
 #include "malloc.h"
-#include "lib/List/GensRange.h"
+#include "lib/GensRange/GensRange.h"
 #include "lib/Thread/Thread.h"
 
 #define OPTION_GEN_COUNT 1
@@ -15,7 +15,7 @@
 #define MAX_START_GEN 3 
 #define BUF_SIZE 10
 
-
+//volatile int TIME = 3000;
 volatile bool flagAltThread = TRUE;
 
 volatile int* globalArrayN[20];
