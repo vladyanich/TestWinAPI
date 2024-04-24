@@ -1,14 +1,14 @@
 
-#include "GensRange.h"
+#include "gensRange.h"
 #include "Windows.h"
 
-Generator_t* push_node(Generator_t* topNode, int newData)
+Generator_t* generator_add(Generator_t* topGenerator, int newData)
 {
 	Generator_t* ptr = (Generator_t*)malloc(sizeof(Generator_t));
 	if (ptr != NULL)
 	{
 		ptr->N = newData;
-		ptr->next = topNode;
+		ptr->next = topGenerator;
 		return ptr;
 	}
 	else
@@ -17,59 +17,29 @@ Generator_t* push_node(Generator_t* topNode, int newData)
 	}
 }
 
-void show_all_gens(const Generator_t* topNode)
-{
-	int count = 1;
-	const Generator_t* currentNode = topNode;
-	while (currentNode != NULL)
-	{
-		printf("\n%d. N = %d", count, currentNode->N);
-		currentNode = currentNode->next;
-		count++;
-	}
-}
-
-int generators_count(const Generator_t* topNode)
+int generators_count(const Generator_t* topGenerator)
 {
 	int count = 0;
-	const Generator_t* currentNode = topNode;
-	while (currentNode != NULL)
+	const Generator_t* currentGenerator = topGenerator;
+	while (currentGenerator != NULL)
 	{
-		if (currentNode != NULL)
+		if (currentGenerator != NULL)
 		{
 			count++;
-			currentNode = currentNode->next;
+			currentGenerator = currentGenerator->next;
 		}
 	}
 	return count;
 }
 
-void setup_n_generator(Generator_t* topNode, int number, int value)
+void generator_setup_n(Generator_t* topGenerator, int number, int value)
 {
 	int i = 0;
-	Generator_t* currentNode = topNode;
-	while (i < number && currentNode->next)
+	Generator_t* currentGenerator = topGenerator;
+	while (i < number && currentGenerator->next)
 	{
-		currentNode = currentNode->next;
+		currentGenerator = currentGenerator->next;
 		i++;
 	}
-	currentNode->N = value;
-}
-
-void set_global_generators_parametrs(const Generator_t* topNode) //установить параметры в volatile переменные
-{
-	const Generator_t* currentNode = topNode;
-	int nodeCount = 0;
-	int array[20];
-	while (currentNode != NULL)
-	{
-		if (currentNode != NULL)
-		{
-			array[nodeCount] = currentNode->N;
-			nodeCount++;
-			currentNode = currentNode->next;
-		}
-	}
-	memcpy(globalArrayN, array, 60);
-	gensCount = nodeCount;
+	currentGenerator->N = value;
 }

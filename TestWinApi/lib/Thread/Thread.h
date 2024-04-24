@@ -2,19 +2,14 @@
 #define __Thread_H__
 
 #include "stdbool.h"
+#include "../lib/List/gensRange.h"
 
-extern volatile int TIME;
+extern volatile int sleepDelay;
 
-extern volatile bool flagAltThread;
+extern volatile int thread_random_sum_value;
 
-extern volatile int* globalArrayN[20];
+int thread_get_sum(const Generator_t* topNode);
 
-extern volatile int gensCount;
-
-extern int randSum;
-
-int get_sum();
-
-DWORD WINAPI ThreadFunc(void* data);
+DWORD WINAPI thread_task_handler(const Generator_t* topNode);
 
 #endif
