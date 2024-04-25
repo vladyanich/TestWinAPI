@@ -30,14 +30,13 @@ int main()
 
 	for (int i = 1; i <= MAIN_MAX_START_GEN; i++)
 	{
-		topGenerator = generator_add(topGenerator, i * 10);
+		generator_create(&topGenerator, i * 10);
 	}
 
 	HANDLE thread = CreateThread(NULL, 0, thread_task_handler, topGenerator, 0, NULL);
 
 	while (number != MAIN_EXIT_PROGRAM)
 	{
-
 		system("cls");
 		printf("\n1. Generators count\n");
 		printf("2. Add generator\n");
@@ -61,7 +60,7 @@ int main()
 				printf("\nSet value N = ");
 				fgets(buffer, MAIN_BUF_SIZE, stdin);
 				number = atoi(buffer);
-				topGenerator = generator_add(topGenerator, number);
+				generator_create(&topGenerator, number);
 			}
 			break;
 			case MAIN_OPTION_GEN_SETUP_N:
@@ -72,7 +71,7 @@ int main()
 				printf("\nEnter value of N:");
 				fgets(buffer, sizeof(buffer), stdin);
 				nValue = atoi(buffer);
-				generator_setup_n(topGenerator, number, nValue);
+				generator_setup_n(&topGenerator, number, nValue);
 			}
 			break;
 			case MAIN_OPTION_GEN_TIMER_SET:

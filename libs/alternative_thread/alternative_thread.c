@@ -29,7 +29,6 @@ DWORD WINAPI thread_task_handler(const Generator_t* topNode)
 		thread_random_sum_value = thread_get_sum(topNode);
 		LeaveCriticalSection(&criticalSection);
 		Sleep(sleepDelay);
-
 	}
 	return 0;
 }
