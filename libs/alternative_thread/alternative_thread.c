@@ -1,6 +1,6 @@
 #include "Windows.h"
-#include "Thread.h"
-#include "../lib/List/gensRange.h"
+#include "alternative_thread.h"
+#include "gens_range/gens_range.h"
 
 volatile int sleepDelay = 3000;
 
@@ -24,9 +24,12 @@ int thread_get_sum(const Generator_t* topGenerator)
 DWORD WINAPI thread_task_handler(const Generator_t* topNode)
 {
 	while (true)
-	{
+	{ 
+		EnterCriticalSection(&criticalSection);
 		thread_random_sum_value = thread_get_sum(topNode);
+		LeaveCriticalSection(&criticalSection);
 		Sleep(sleepDelay);
+
 	}
 	return 0;
 }

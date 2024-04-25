@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.34526.175
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestWinApi", "TestWinApi\TestWinApi.vcxproj", "{99486284-456F-4018-BD73-3974E3DCF833}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestWinApi", "TestWinApi.vcxproj", "{99486284-456F-4018-BD73-3974E3DCF833}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E06B156F-68AE-4C1C-985C-2E245A68487E}
+		SolutionGuid = {396B7B28-48DD-46B8-8155-F9CB5F62430C}
 	EndGlobalSection
 EndGlobal

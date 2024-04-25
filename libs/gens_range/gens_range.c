@@ -1,5 +1,5 @@
 
-#include "gensRange.h"
+#include "gens_range.h"
 #include "Windows.h"
 
 Generator_t* generator_add(Generator_t* topGenerator, int newData)

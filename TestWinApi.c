@@ -3,104 +3,95 @@
 #include "stdio.h" 
 #include "string.h"
 #include "malloc.h"
-#include "lib/GensRange/GensRange.h"
-#include "lib/Thread/Thread.h"
+#include "gens_range/gens_range.h"
+#include "alternative_thread/alternative_thread.h"
 
-#define OPTION_GEN_COUNT 1
-#define OPTION_GEN_ADD 2
-#define OPTION_GEN_SETUP_N 3
-#define OPTION_GEN_TIMER_SET 4
-#define OPTION_GEN_SUM 5
-#define EXIT_PROGRAM 6
-#define MAX_START_GEN 3 
-#define BUF_SIZE 10
+#define MAIN_OPTION_GEN_COUNT 1
+#define MAIN_OPTION_GEN_ADD 2
+#define MAIN_OPTION_GEN_SETUP_N 3
+#define MAIN_OPTION_GEN_TIMER_SET 4
+#define MAIN_OPTION_GEN_SUM 5
+#define MAIN_EXIT_PROGRAM 6
+#define MAIN_MAX_START_GEN 3 
+#define MAIN_BUF_SIZE 10
 
-//volatile int TIME = 3000;
-volatile bool flagAltThread = TRUE;
-
-volatile int* globalArrayN[20];
-volatile int gensCount = 0;
+CRITICAL_SECTION criticalSection;
 
 int main()
 {
-	Generator_t* topNode = NULL;
-	HANDLE thread = CreateThread(NULL, 0, ThreadFunc, NULL, 0, NULL);
+	Generator_t* topGenerator = NULL;
 
-	char buffer[BUF_SIZE];
+	InitializeCriticalSection(&criticalSection);
+
+	char buffer[MAIN_BUF_SIZE];
 	int number = 0;
 	int nValue = 0;
+	int sum = 0;
 
-	for (int i = 1; i <= MAX_START_GEN; i++)
+	for (int i = 1; i <= MAIN_MAX_START_GEN; i++)
 	{
-		topNode = push_node(topNode, i * 10);
+		topGenerator = generator_add(topGenerator, i * 10);
 	}
 
-	set_global_generators_parametrs(topNode);
+	HANDLE thread = CreateThread(NULL, 0, thread_task_handler, topGenerator, 0, NULL);
 
-	while (number != EXIT_PROGRAM)
+	while (number != MAIN_EXIT_PROGRAM)
 	{
-		gensCount = generators_count(topNode);
+
+		system("cls");
+		printf("\n1. Generators count\n");
+		printf("2. Add generator\n");
+		printf("3. Set N on generator\n");
+		printf("4. Set time of calculation\n");
+		printf("5. Show sum generators\n");
+		printf("6. Exit\n");
 
 		fgets(buffer, sizeof(buffer), stdin);
 		number = atoi(buffer);
 
 		switch (number)
 		{
-		case OPTION_GEN_COUNT:
-		{
-			printf("\nGenerators count: %d", gensCount);
-		}
-		break;
-		case OPTION_GEN_ADD:
-		{
-			flagAltThread = FALSE;
-
-			printf("\nSet value N = ");
-			fgets(buffer, BUF_SIZE, stdin);
-			number = atoi(buffer);
-			topNode = push_node(topNode, number);
+			case MAIN_OPTION_GEN_COUNT:
+			{
+				printf("\nGenerators count: %d", generators_count(topGenerator));
+			}
+			break;
+			case MAIN_OPTION_GEN_ADD:
+			{
+				printf("\nSet value N = ");
+				fgets(buffer, MAIN_BUF_SIZE, stdin);
+				number = atoi(buffer);
+				topGenerator = generator_add(topGenerator, number);
+			}
+			break;
+			case MAIN_OPTION_GEN_SETUP_N:
+			{
+				printf("\nSet the generator number:");
+				fgets(buffer, sizeof(buffer), stdin);
+				number = atoi(buffer);
+				printf("\nEnter value of N:");
+				fgets(buffer, sizeof(buffer), stdin);
+				nValue = atoi(buffer);
+				generator_setup_n(topGenerator, number, nValue);
+			}
+			break;
+			case MAIN_OPTION_GEN_TIMER_SET:
+			{
+				printf("\nSet new timer: ");
+				fgets(buffer, sizeof(buffer), stdin);
+				sleepDelay = atoi(buffer);
+			}
+			break;
+			case MAIN_OPTION_GEN_SUM:
+			{
+				EnterCriticalSection(&criticalSection);
+				printf("\nRand sum = %d", thread_random_sum_value);
+				LeaveCriticalSection(&criticalSection);
+			}
+			break;
 			
-			set_global_generators_parametrs(topNode);
-			
-			flagAltThread = TRUE;
 		}
-		break;
-		case OPTION_GEN_SETUP_N:
-		{
-			flagAltThread = FALSE;
-			
-			printf("\nSet the generator number:");
-			fgets(buffer, sizeof(buffer), stdin);
-			number = atoi(buffer);
-
-			printf("\nEnter value of N:");
-			fgets(buffer, sizeof(buffer), stdin);
-			nValue = atoi(buffer);
-
-			setup_n_generator(topNode, number, nValue);
-			set_global_generators_parametrs(topNode);
-			
-			flagAltThread = TRUE;
-		}
-		break;
-		case OPTION_GEN_TIMER_SET:
-		{
-			flagAltThread = FALSE;
-			
-			printf("\nSet new timer: ");
-			fgets(buffer, sizeof(buffer), stdin);
-			TIME = atoi(buffer);
-			
-			flagAltThread = TRUE;
-		}
-		break;
-		case OPTION_GEN_SUM:
-		{
-			printf("Sum = %d\n", get_sum());
-
-		}
-		break;
-		}
+		Sleep(1000);
 	}
 	return 0;
 }

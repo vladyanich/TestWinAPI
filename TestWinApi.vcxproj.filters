@@ -13,33 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="lib">
+    <Filter Include="libs">
       <UniqueIdentifier>{968b1106-7dcd-43e9-b3b0-ad27b9899099}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lib\Thread">
-      <UniqueIdentifier>{81d05688-6fc2-437a-b6e9-bcaf56bef51a}</UniqueIdentifier>
+    <Filter Include="libs\alternative_thread">
+      <UniqueIdentifier>{5e5bb6ef-d862-48b8-9888-d5ef3779853a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lib\GensRange">
-      <UniqueIdentifier>{3db5ae23-bc27-4c0e-b9d1-fc08847a3a6d}</UniqueIdentifier>
+    <Filter Include="libs\gens_range">
+      <UniqueIdentifier>{07cd9201-20eb-4389-8b87-4b001200cace}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestWinApi.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lib\Thread\Thread.c">
-      <Filter>lib\Thread</Filter>
+    <ClCompile Include="libs\gens_range\gens_range.c">
+      <Filter>libs\gens_range</Filter>
     </ClCompile>
-    <ClCompile Include="lib\GensRange\GensRange.c">
-      <Filter>lib\GensRange</Filter>
+    <ClCompile Include="libs\alternative_thread\alternative_thread.c">
+      <Filter>libs\alternative_thread</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lib\Thread\Thread.h">
-      <Filter>lib\Thread</Filter>
+    <ClInclude Include="libs\gens_range\gens_range.h">
+      <Filter>libs\gens_range</Filter>
     </ClInclude>
-    <ClInclude Include="lib\GensRange\GensRange.h">
-      <Filter>lib\GensRange</Filter>
+    <ClInclude Include="libs\alternative_thread\alternative_thread.h">
+      <Filter>libs\alternative_thread</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
