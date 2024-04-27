@@ -5,13 +5,14 @@
 bool generator_create(Generator_t** topGenerator, int newData)
 {
 	Generator_t* temp = (Generator_t*)malloc(sizeof(Generator_t));
-
+	
 	if (temp != NULL)
 	{
-	
+		EnterCriticalSection(&criticalSection);
 		temp->N = newData;
 		temp->next = *topGenerator;
 		*topGenerator = temp;
+		LeaveCriticalSection(&criticalSection);
 
 		return TRUE;
 	}
@@ -24,30 +25,27 @@ bool generator_create(Generator_t** topGenerator, int newData)
 int generators_count(const Generator_t* topGenerator)
 {
 	int count = 0;
-
 	while(topGenerator)
 	{
-		count++;
+		EnterCriticalSection(&criticalSection);
+		printf("\n[%d]Gen N = %d", count, topGenerator->N);
 		topGenerator = topGenerator->next;
+		count++;
+		LeaveCriticalSection(&criticalSection);
 	}
-
 	return count;
 }
 
 void generator_setup_n(Generator_t* topGenerator, int number, int newN) // ne rabotaet
 {
-	int i = 0;
-	Generator_t *temp = NULL;
-	while (i < number && topGenerator->next)
+	int count = 0;
+	EnterCriticalSection(&criticalSection);
+	while (count < number && topGenerator->next)
 	{
 		topGenerator = topGenerator->next;
-		i++;
+		count++;
 	}
-	temp = (Generator_t*)malloc(sizeof(Generator_t));
-	temp->N = newN;
-	if (topGenerator->next)
-	{
-		temp->next = NULL;
-	}
-	topGenerator->next = temp;
+
+	topGenerator->N = newN;
+	LeaveCriticalSection(&criticalSection);
 }

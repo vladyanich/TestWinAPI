@@ -71,7 +71,7 @@ int main()
 				printf("\nEnter value of N:");
 				fgets(buffer, sizeof(buffer), stdin);
 				nValue = atoi(buffer);
-				generator_setup_n(&topGenerator, number, nValue);
+				generator_setup_n(topGenerator, number, nValue);
 			}
 			break;
 			case MAIN_OPTION_GEN_TIMER_SET:
