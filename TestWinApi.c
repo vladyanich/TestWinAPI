@@ -15,16 +15,16 @@
 #define MAIN_MAX_START_GEN 3 
 #define MAIN_BUF_SIZE 10
 
-CRITICAL_SECTION criticalSection;
 
 int main()
 {
-	Generator_t* topGenerator = NULL;
+	gens_range_init_critical_section();
 
-	InitializeCriticalSection(&criticalSection);
+	Generator_t* topGenerator = NULL;
 
 	char buffer[MAIN_BUF_SIZE];
 	int number = 0;
+	int optionNumber = 0;
 	int nValue = 0;
 	int sum = 0;
 
@@ -35,7 +35,7 @@ int main()
 
 	HANDLE thread = CreateThread(NULL, 0, thread_task_handler, topGenerator, 0, NULL);
 
-	while (number != MAIN_EXIT_PROGRAM)
+	while (optionNumber != MAIN_EXIT_PROGRAM)
 	{
 		system("cls");
 		printf("\n1. Generators count\n");
@@ -46,9 +46,9 @@ int main()
 		printf("6. Exit\n");
 
 		fgets(buffer, sizeof(buffer), stdin);
-		number = atoi(buffer);
+		optionNumber = atoi(buffer);
 
-		switch (number)
+		switch (optionNumber)
 		{
 			case MAIN_OPTION_GEN_COUNT:
 			{
@@ -84,7 +84,7 @@ int main()
 			case MAIN_OPTION_GEN_SUM:
 			{
 				EnterCriticalSection(&criticalSection);
-				printf("\nRand sum = %d", thread_random_sum_value);
+				printf("\nRand sum = %d", generatorsRandomSumValue);
 				LeaveCriticalSection(&criticalSection);
 			}
 			break;

@@ -6,11 +6,9 @@
 
 extern volatile int sleepDelay;
 
-extern volatile int thread_random_sum_value;
+extern volatile int GeneratorsRandomSumValue;
 
 extern CRITICAL_SECTION criticalSection;
-
-int thread_get_sum(const Generator_t* topNode);
 
 DWORD WINAPI thread_task_handler(const Generator_t* topNode);
 
