@@ -20,8 +20,8 @@ bool generator_create(Generator_t** topGenerator, int newData)
 	if (temp != NULL)
 	{
 		temp->N = newData;
-		temp->next = *topGenerator;
 		EnterCriticalSection(&criticalSection);
+		temp->next = *topGenerator;
 		*topGenerator = temp;
 		LeaveCriticalSection(&criticalSection);
 

@@ -15,7 +15,6 @@
 #define MAIN_MAX_START_GEN 3 
 #define MAIN_BUF_SIZE 10
 
-
 int main()
 {
 	gens_range_init_critical_section();
